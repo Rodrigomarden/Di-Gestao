@@ -20,10 +20,6 @@ public class LoginController extends HttpServlet {
 		return result;
 	}
 
-	private int toInt(HttpServletRequest req, String param, String padrao) {
-		return Integer.parseInt(valor(req, param, padrao));
-	}
-
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
@@ -33,7 +29,6 @@ public class LoginController extends HttpServlet {
 			String senha = valor(req, "senha", "");
 			if (op.equals("entrar")) {
 				boolean resposta = LoginDao.comparar(usuario, senha);
-				System.out.print(usuario);
 				if (resposta == true) {
 
 					//Obter a sessão.

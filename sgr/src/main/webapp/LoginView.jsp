@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>DI GestÃ£o</title>
+  <title>DI Gestão</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="Login/css/bootstrap.min.css" rel="stylesheet">
@@ -69,7 +69,7 @@
                 
                 <!--Login conta-->
                 <li class="dropdown">
-                  <!--BotÃ£o de Login-->
+                  <!--Botão de Login-->
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-log-in"></span>
                     <b>Login</b>
@@ -79,20 +79,11 @@
                     <li>
                       <div class="row">
                         <div class="col-md-12">
-                          <p id="ou"> Login via</p>
-                          <!--BotÃµes Redes Sociais-->
-                          <div>
-                            <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                          </div>
-
-                          <p id="ou">ou</p>
-
-                          <!--Imput do Login-->
-                          <form class="form" role="form" method="post" action="Mesas.jsp" accept-charset="UTF-8" id="login-nav">
+						<form>
                             <!--Login-->
                             <div class="form-group">
                               <label class="sr-only" for="Rodrigo">Login</label>
-                              <input type="text" class="form-control" id="Login" name="usuario" placeholder="Login" required>
+                              <input type="text" class="form-control" name="usuario" id="Login" placeholder="Login" required>
                             </div>
 
                             <!--Password-->
@@ -102,6 +93,9 @@
                               <!--Recuperar Senha-->
                               <div class="help-block text-right">
                                 <a id="ou" href="#">Esqueceu sua senha?</a>
+                              </div>
+                              <div class="help-block text-right">
+                              	<b>${msg}</b>
                               </div>
                             </div>
 
@@ -131,7 +125,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                  <h1 class="brand-heading">Di - GestÃ£o</h1>
+                  <h1 class="brand-heading">Di - Gestão</h1>
                   <p class="intro-text">Torne seu restaurante mais eficiente e produtivo de qualquer lugar do mundo.</p>
                   <a href="#about" class="btn btn-circle page-scroll">
                     <i class="fa fa-angle-double-down animated"></i>
@@ -146,9 +140,9 @@
         <section id="about" class="container content-section text-center">
           <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-              <h2>Sobre o Di - GestÃ£o</h2>
-              <p>Com a agilidade que os recursos <strong>Di - GestÃ£o</strong> oferecem, vocÃª e os membros de sua equipe podem se dedicar integralmente Ã  satisfaÃ§Ã£o do cliente, proporcionando uma experiÃªncia ainda mais rica desde a entrada no restaurante atÃ© o fechamento da conta. ConheÃ§a os benefÃ­cios do nosso sistema de restaurante.</p>
-              <p>Com o software para gestÃ£o de restaurante <strong>Di - GestÃ£o</strong> vocÃª terÃ¡ informaÃ§Ãµes e poderÃ¡ utilizar os dados para faturar mais com os negÃ³cios e economizar com as despesas extras. Ao estudar os nÃºmeros de seu restaurante, vocÃª tem uma boa perspectiva do seu volume de vendas e pode identificar as tendÃªncias de seus pedidos!.</p>
+              <h2>Sobre o Di - Gestão</h2>
+              <p>Com a agilidade que os recursos <strong>Di - Gestão</strong> oferecem, você e os membros de sua equipe podem se dedicar integralmente à satisfação do cliente, proporcionando uma experiência ainda mais rica desde a entrada no restaurante até o fechamento da conta. Conheça os benefícios do nosso sistema de restaurante.</p>
+              <p>Com o software para gestão de restaurante <strong>Di - Gestão</strong> você terá informações e poderá utilizar os dados para faturar mais com os negócios e economizar com as despesas extras. Ao estudar os números de seu restaurante, você tem uma boa perspectiva do seu volume de vendas e pode identificar as tendências de seus pedidos!.</p>
             </div>
           </div>
         </section>
@@ -159,7 +153,7 @@
             <div class="container">
               <div class="col-lg-8 col-lg-offset-2">
                 <div class="alert alert-warning" role="alert">
-                  <h2>Um sistema 100 % web que proporciona benefÃ­cios Ãºnicos</h2>
+                  <h2>Um sistema 100 % web que proporciona beneficios Únicos</h2>
                 </div>
               </div>
             </div>
@@ -171,7 +165,7 @@
           <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
               <h2>Contate-nos pelas Redes Sociais</h2>
-              <p>No caso de alguma dÃºvida, entre em contato conosco pelo e-mail ou em alguma de nossas redes sociais</p>
+              <p>No caso de alguma dúvida, entre em contato conosco pelo e-mail ou em alguma de nossas redes sociais</p>
               <p><a href="mailto:contato@digestao.com">contato@digestao.com</a>
               </p>
               <ul class="list-inline banner-social-buttons">
@@ -195,9 +189,9 @@
           <div class="container">
             <address>
             <strong>DIGESTÃƒO </strong><br>
-                Rua imaginÃ¡ria, 701-704<br>
+                Rua imaginária, 701-704<br>
                 74593-595<br>
-                GoiÃ¢nia - Brasil<br>
+                Goiánia - Brasil<br>
                 <abbr>P:</abbr> +55 062 3546-5411
            </address>
           </div>

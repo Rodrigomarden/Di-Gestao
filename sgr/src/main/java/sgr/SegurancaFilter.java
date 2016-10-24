@@ -36,7 +36,7 @@ public class SegurancaFilter implements Filter {
 		boolean loginRequest = requestURI.equals(loginUri);
 
 		//Se estiver logado ou se for a página de login.
-		if (loggedIn || loginRequest || requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpeg") || requestURI.endsWith("dbclient.jsp") ) {
+		if (loggedIn || loginRequest || requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg") || requestURI.endsWith(".woff2") || requestURI.endsWith(",700italic") || requestURI.endsWith(",700") || requestURI.endsWith("dbclient.jsp") ) {
 			//Segue adiante.
 			chain.doFilter(request, response);
 		} else {
