@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>DI Gestão</title>
+  <title>DI Gestï¿½o</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="Login/css/bootstrap.min.css" rel="stylesheet">
@@ -69,7 +69,7 @@
                 
                 <!--Login conta-->
                 <li class="dropdown">
-                  <!--Botão de Login-->
+                  <!--Botï¿½o de Login-->
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-log-in"></span>
                     <b>Login</b>
@@ -125,7 +125,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                  <h1 class="brand-heading">Di - Gestão</h1>
+                  <h1 class="brand-heading">Di - Gestï¿½o</h1>
                   <p class="intro-text">Torne seu restaurante mais eficiente e produtivo de qualquer lugar do mundo.</p>
                   <a href="#about" class="btn btn-circle page-scroll">
                     <i class="fa fa-angle-double-down animated"></i>
@@ -140,9 +140,9 @@
         <section id="about" class="container content-section text-center">
           <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-              <h2>Sobre o Di - Gestão</h2>
-              <p>Com a agilidade que os recursos <strong>Di - Gestão</strong> oferecem, você e os membros de sua equipe podem se dedicar integralmente à satisfação do cliente, proporcionando uma experiência ainda mais rica desde a entrada no restaurante até o fechamento da conta. Conheça os benefícios do nosso sistema de restaurante.</p>
-              <p>Com o software para gestão de restaurante <strong>Di - Gestão</strong> você terá informações e poderá utilizar os dados para faturar mais com os negócios e economizar com as despesas extras. Ao estudar os números de seu restaurante, você tem uma boa perspectiva do seu volume de vendas e pode identificar as tendências de seus pedidos!.</p>
+              <h2>Sobre o Di - Gestï¿½o</h2>
+              <p>Com a agilidade que os recursos <strong>Di - Gestï¿½o</strong> oferecem, vocï¿½ e os membros de sua equipe podem se dedicar integralmente ï¿½ satisfaï¿½ï¿½o do cliente, proporcionando uma experiï¿½ncia ainda mais rica desde a entrada no restaurante atï¿½ o fechamento da conta. Conheï¿½a os benefï¿½cios do nosso sistema de restaurante.</p>
+              <p>Com o software para gestï¿½o de restaurante <strong>Di - Gestï¿½o</strong> vocï¿½ terï¿½ informaï¿½ï¿½es e poderï¿½ utilizar os dados para faturar mais com os negï¿½cios e economizar com as despesas extras. Ao estudar os nï¿½meros de seu restaurante, vocï¿½ tem uma boa perspectiva do seu volume de vendas e pode identificar as tendï¿½ncias de seus pedidos!.</p>
             </div>
           </div>
         </section>
@@ -153,7 +153,7 @@
             <div class="container">
               <div class="col-lg-8 col-lg-offset-2">
                 <div class="alert alert-warning" role="alert">
-                  <h2>Um sistema 100 % web que proporciona beneficios Únicos</h2>
+                  <h2>Um sistema 100 % web que proporciona beneficios ï¿½nicos</h2>
                 </div>
               </div>
             </div>
@@ -165,7 +165,7 @@
           <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
               <h2>Contate-nos pelas Redes Sociais</h2>
-              <p>No caso de alguma dúvida, entre em contato conosco pelo e-mail ou em alguma de nossas redes sociais</p>
+              <p>No caso de alguma dï¿½vida, entre em contato conosco pelo e-mail ou em alguma de nossas redes sociais</p>
               <p><a href="mailto:contato@digestao.com">contato@digestao.com</a>
               </p>
               <ul class="list-inline banner-social-buttons">
@@ -189,9 +189,9 @@
           <div class="container">
             <address>
             <strong>DIGESTÃƒO </strong><br>
-                Rua imaginária, 701-704<br>
+                Rua imaginï¿½ria, 701-704<br>
                 74593-595<br>
-                Goiánia - Brasil<br>
+                Goiï¿½nia - Brasil<br>
                 <abbr>P:</abbr> +55 062 3546-5411
            </address>
           </div>
