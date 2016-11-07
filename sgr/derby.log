@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Mon Nov 07 18:55:33 BRST 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0158-4093-2066-000008aff0d8 
+Mon Nov 07 21:09:06 BRST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0158-410d-6305-0000014875c0 
 on database directory C:\Users\rodri\git\Di-Gestao\sgr\bd with class loader WebappClassLoader
   context: /sgr
   delegate: false

@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
 					//Incluir variável na região de memória da sessão.
 					session.setAttribute("usuario", usuario);
 					
-					resp.sendRedirect("Garcom-Mesas.jsp");
+					resp.sendRedirect("garcom_mesas");
 				} else {
 					msg = "Usuário ou senha incorreta.";
 				}

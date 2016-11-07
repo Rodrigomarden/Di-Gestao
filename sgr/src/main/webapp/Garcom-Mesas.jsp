@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="sgr.Mesas"%>
+<%@page import="sgr.GarcomMesasDao"%>
+<%@page import="java.util.List"%>
 <html lang="en">
 
 <head>
@@ -45,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Garcom-Mesas.jsp">Di-Gestão - Garçom</a>
+                <a class="navbar-brand" href="garcom_mesas">Di-Gestão - Garçom</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -74,7 +77,7 @@
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a href="Garcom-Mesas.jsp"><i class="glyphicon glyphicon-cutlery"></i> Mesas</a>
+                            <a href="garcom_mesas"><i class="glyphicon glyphicon-cutlery"></i> Mesas</a>
                         </li>
                         <li>
                             <!-- Button trigger modal -->
@@ -96,56 +99,27 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
+                
                 <!-- /.row -->
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="row">
-									<div class="tab-content">
-										<div class="tab-pane fade in active" id="01">
-											<div class="col-xs-3">
-												<i class="fa fa-minus-circle fa-3x"></i>
-											</div>
-											<div class="col-xs-6">
-												<div>Indisponível</div>
-											</div>
-											<div class="col-xs-3 text-right">
-												Mesa<div class="huge">01</div>
-											</div>
-										</div>
-										<div class="tab-pane fade" id="-01">
-											<div class="col-xs-6">
-
-											</div>
-											
-											<div class="col-xs-6">
-
-											</div>
-										</div>
-									</div>
-                                </div>
-                            </div>
-                                <div class="panel-footer">
-									
-                                </div>
-                        </div>
-                    </div>
-					
+					<%List<Mesas> mesas = (List<Mesas>) request.getAttribute("mesas"); 
+						if(mesas != null && !mesas.isEmpty()) {
+							for (Mesas m : mesas) {
+					%>
 					<div class="col-lg-3 col-md-6">
-                        <div class="panel panel-yellow">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="row">
 									<div class="tab-content">
 										<div class="tab-pane fade in active" id="02">
 											<div class="col-xs-3">
-												<i class="fa fa-exclamation-circle fa-3x"></i>
+												<i class="glyphicon glyphicon-cutlery fa-3x"></i>
 											</div>
 											<div class="col-xs-6">
-												<div>Aguardando Pedido</div>
+												<div><%=m.getStatus() %></div>
 											</div>
 											<div class="col-xs-3 text-right">
-												Mesa<div class="huge">02</div>
+												Mesa<div class="huge"><%=m.getNum_mesa() %></div>
 											</div>
 										</div>
 										<div class="tab-pane fade" id="-02">
@@ -190,148 +164,7 @@
                                 </div>
                         </div>
                     </div>
-					
-					<div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <div class="row">
-									<div class="tab-content">
-										<div class="tab-pane fade in active" id="03">
-											<div class="col-xs-3">
-												<i class="fa  fa-check fa-3x"></i>
-											</div>
-											<div class="col-xs-6">
-												<div>Atendido</div>
-											</div>
-											<div class="col-xs-3 text-right">
-												Mesa<div class="huge">03</div>
-											</div>
-										</div>
-										<div class="tab-pane fade" id="-03">
-											<div class="col-xs-12">
-                                                Nº: 0105 <br>
-												Garçom: Gabriella <br>
-											</div>
-										</div>
-									</div>
-                                </div>
-                            </div>
-                                <div class="panel-footer">
-                                    <ul class="nav nav-pills">
-                                        <li>
-                                            <button href="#03" data-toggle="tab" class="btn btn-primary"><i class="fa fa-home"></i></button>
-                                        </li>
-                                        <li>
-                                            <button href="#-03" data-toggle="tab" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
-                                        </li>
-                                        <li>
-                                            <button href="#" data-toggle="modal" data-target="#comanda" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
-                                        </li>
-                                        <!--<li>
-                                            <button href="#" data-toggle="tab" class="btn btn-info" ><i class="fa fa-plus-circle"></i></button>
-                                        </li>
-                                        <li>
-                                            <button href="#" data-toggle="tab" class="btn btn-success" ><i class="fa fa-money"></i></button>
-                                        </li>-->
-                                    </ul>
-                                </div>
-                        </div>
-                    </div>
-					
-					<div class="col-lg-3 col-md-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <div class="row">
-									<div class="tab-content">
-										<div class="tab-pane fade in active" id="04">
-											<div class="col-xs-3">
-												<i class="fa fa-question-circle fa-3x"></i>
-											</div>
-											<div class="col-xs-6">
-												<div>Vazio/Aguardando Atendimento</div>
-											</div>
-											<div class="col-xs-3 text-right">
-												Mesa<div class="huge">04</div>
-											</div>
-										</div>
-										<div class="tab-pane fade" id="-04">
-											<div class="col-xs-6">
-
-											</div>
-											
-											<div class="col-xs-6">
-
-											</div>
-										</div>
-									</div>
-                                </div>
-                            </div>
-                                <div class="panel-footer">
-                                    <ul class="nav nav-pills">
-                                        <li>
-                                            <button href="#04" data-toggle="tab" class="btn btn-primary"><i class="fa fa-home"></i></button>
-                                        </li>
-                                        <!-- Nova Comanda/Cliente -->
-                                        <li>
-                                            <button href="#" data-toggle="tab" class="btn btn-success" ><i class="fa fa-user"></i></button>
-                                        </li>
-                                    </ul>
-                                </div>
-                        </div>
-                    </div>
-					
-                </div>
-                <!-- /.row -->
-                
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <div class="row">
-									<div class="tab-content">
-										<div class="tab-pane fade in active" id="05">
-											<div class="col-xs-3">
-												<i class="fa fa-times-circle fa-3x"></i>
-											</div>
-											<div class="col-xs-6">
-												<div>Solicitou o Gerente</div>
-											</div>
-											<div class="col-xs-3 text-right">
-												Mesa<div class="huge">05</div>
-											</div>
-										</div>
-										<div class="tab-pane fade" id="-05">
-											<div class="col-xs-12">
-                                                Nº: 0165 <br>
-												Garçom: Matheus<br>
-                                                <strong>Aguardando:</strong><br>
-                                                <ul>
-                                                    <li>Coca 600ml</li>
-                                                    <li>Porção de Batatas</li>
-											</div>
-										</div>
-									</div>
-                                </div>
-                            </div>
-
-                            <div class="panel-footer">
-								<ul class="nav nav-pills">
-                                    <!-- Informações Gerais da Mesa -->
-                                    <li>
-                                        <button href="#05" data-toggle="tab" class="btn btn-primary"><i class="fa fa-home"></i></button>
-                                    </li>
-                                    <!-- Informações mais detalhadas -->
-                                    <li>
-                                        <button href="#-05" data-toggle="tab" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
-                                    </li>
-                                    <!-- Comanda -->
-                                    <li>
-                                        <button href="#" data-toggle="modal" data-target="#comanda" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <%}} %>
                 </div>
                 <!-- /.row -->
 
@@ -467,16 +300,16 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="Garcom-Mesas/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="Garcom-Mesas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="Garcom-Mesas/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="Garcom-Mesas/dist/js/sb-admin-2.js"></script>
 
 </body>
 
