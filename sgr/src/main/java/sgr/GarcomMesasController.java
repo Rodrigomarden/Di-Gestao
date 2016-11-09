@@ -40,11 +40,11 @@ public class GarcomMesasController extends HttpServlet {
 			
 			if (op.equals("informacoes")) {
 				InformacoesMesa info = GarcomMesasDao.informacoes(num_mesa);
-				if(info != null) {
+				if(info.getNome() == null) {
+					req.setAttribute("codigo_comanda", "Não há comanda cadastrada para essa mesa.");
+				} else {
 					req.setAttribute("codigo_comanda", "Nº: "+info.getCodigo());
 					req.setAttribute("nome_garcom", "Garçom: "+info.getNome());
-				} else {
-					req.setAttribute("codigo_comanda", "Não há comanda cadastrada para essa mesa.");
 				}
 				
 			}

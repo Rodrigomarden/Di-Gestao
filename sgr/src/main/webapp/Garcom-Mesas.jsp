@@ -154,7 +154,7 @@
                                             <button href="#" data-toggle="modal" data-target="#comanda<%=m.getNum_mesa() %>" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
                                         </li>
                                         <li>
-                                        <a href="garcom_mesas?operacao=informacoes & num_mesa=<%=m.getNum_mesa() %>">link</a>
+                                        <a href="garcom_mesas?operacao=informacoes&num_mesa=<%=m.getNum_mesa() %>">link</a>
                                         </li>
                                         <!-- Novo Pedido -->
                                         <!--<li>
