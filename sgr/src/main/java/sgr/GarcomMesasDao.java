@@ -41,7 +41,7 @@ public class GarcomMesasDao {
 		// Abrir uma conexão com o banco de dados.
 		Connection conn = DriverManager.getConnection(URL);
 		// Executar instrução SQL.
-		String sql = "select codigo, nome from comanda join funcionario_dados on cpf_garçom = cpf where numero_mesa = ?";
+		String sql = "select codigo, nome from comanda join funcionario_dados on cpf_garçom = cpf where numero_mesa = ? and data=CURRENT_DATE and hora_inicio <= CURRENT_TIME and hora_fechamento >= CURRENT_TIME";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, num_mesa);
 		// Represneta o resultado da execução.
