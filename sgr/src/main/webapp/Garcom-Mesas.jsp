@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="sgr.Mesas"%>
+<%@page import="sgr.InformacoesMesa"%>
 <%@page import="sgr.GarcomMesasDao"%>
 <%@page import="java.util.List"%>
 <html lang="en">
@@ -111,7 +112,7 @@
                             <div class="panel-heading">
                                 <div class="row">
 									<div class="tab-content">
-										<div class="tab-pane fade in active" id="02">
+										<div class="tab-pane fade in active" id="<%=m.getNum_mesa() %>">
 											<div class="col-xs-3">
 												<i class="glyphicon glyphicon-cutlery fa-3x"></i>
 											</div>
@@ -122,11 +123,11 @@
 												Mesa<div class="huge"><%=m.getNum_mesa() %></div>
 											</div>
 										</div>
-										<div class="tab-pane fade" id="-02">
+										<div class="tab-pane fade" id="-<%=m.getNum_mesa()%>">
 											<div class="col-xs-12">
-                                                Nº: 0051 <br> 
+                                                ${codigo_comanda}<br> 
 												<!-- Numero da Comanda -->
-                                                Garçom: Pedro<br>
+                                                ${nome_garcom}<br>
                                                 <strong>Aguardando:</strong><br>
                                                 <ul>
                                                     <li>Lasanha</li>
@@ -142,15 +143,15 @@
 									<ul class="nav nav-pills">
                                         <!-- Informações Gerais da Mesa -->
                                         <li>
-                                            <button href="#02" data-toggle="tab" class="btn btn-primary"><i class="fa fa-home"></i></button>
+                                            <button href="#<%=m.getNum_mesa() %>" data-toggle="tab" class="btn btn-primary"><i class="fa fa-home"></i></button>
                                         </li>
                                         <!-- Informações mais detalhadas -->
                                         <li>
-                                            <button href="#-02" data-toggle="tab" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
+                                            <button href="#-<%=m.getNum_mesa() %>" data-toggle="tab" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
                                         </li>
                                         <!-- Comanda -->
                                         <li>
-                                            <button href="#" data-toggle="modal" data-target="#comanda" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
+                                            <button href="#" data-toggle="modal" data-target="#comanda<%=m.getNum_mesa() %>" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
                                         </li>
                                         <!-- Novo Pedido -->
                                         <!--<li>
