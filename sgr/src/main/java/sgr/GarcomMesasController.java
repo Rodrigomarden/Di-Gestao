@@ -36,17 +36,27 @@ public class GarcomMesasController extends HttpServlet {
 			String msg;
 			String op = valor(req, "operacao", "");
 			int num_mesa = toInt(req, "num_mesa", "0");
-			
-			
 			if (op.equals("informacoes")) {
 				InformacoesMesa info = GarcomMesasDao.informacoes(num_mesa);
-				if(info.getNome() == null) {
-					req.setAttribute("codigo_comanda", "Não há comanda cadastrada para essa mesa.");
-				} else {
+				List<PedidoAndamento> listPedidosAndamento = GarcomMesasDao.pedidosAdamento(num_mesa);
+				if(info.getNome() != null) {
 					req.setAttribute("codigo_comanda", "Nº: "+info.getCodigo());
 					req.setAttribute("nome_garcom", "Garçom: "+info.getNome());
+				} else {
+					req.setAttribute("codigo_comanda", "Não há comanda cadastrada para essa mesa.");
 				}
 				
+				if(listPedidosAndamento.isEmpty()) {
+					PedidoAndamento x = new PedidoAndamento("Não há pedidos sendo aguardados.");
+					listPedidosAndamento.add(x);
+					req.setAttribute("aguardando", listPedidosAndamento);
+				} else {
+					req.setAttribute("aguardando", listPedidosAndamento);
+				}
+				
+			} else if(op.equals("obtComanda")) {
+				List<Comanda> comanda = GarcomMesasDao.obterComanda(num_mesa);
+				req.setAttribute("comanda", comanda);
 			}
 			
 			//Listar Mesas

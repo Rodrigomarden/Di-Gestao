@@ -62,4 +62,64 @@ public class GarcomMesasDao {
 		
 		return informacoesMesa;
 	}
+	
+	public static List<PedidoAndamento> pedidosAdamento(int num_mesa) throws SQLException {
+		// Abrir uma conexão com o banco de dados.
+		Connection conn = DriverManager.getConnection(URL);
+		// Executar instrução SQL.
+		String sql = "select nome_prodrugo from registra_pedido r join produto on codigo_produto=codigo join comanda c on codigo_comanda=c.codigo where numero_mesa = ? and r.status = 'Aguardando'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, num_mesa);
+		// Represneta o resultado da execução.
+		ResultSet rs;
+		rs = pstmt.executeQuery();
+		List<PedidoAndamento> listPedAndamento = new ArrayList<>();
+		while(rs.next()) {
+			String nome_Prod = rs.getString("nome_prodrugo");
+			PedidoAndamento pedAndamento = new PedidoAndamento(nome_Prod);
+			listPedAndamento.add(pedAndamento);
+		}
+		
+		// Fechar resultado.
+		rs.close();
+		// Fechar sentença.
+		pstmt.close();
+		// Fechar conexão.
+		conn.close();
+		
+		return listPedAndamento;
+	}
+	
+	public static List<Comanda> obterComanda(int num_mesa) throws SQLException {
+		// Abrir uma conexão com o banco de dados.
+		Connection conn = DriverManager.getConnection(URL);
+		// Executar instrução SQL.
+		String sql = "select codigo, codigo_produto, nome_prodrugo, valor, quantidade, r.status from comanda c join registra_pedido r on c.codigo=codigo_comanda join produto p on codigo_produto=p.codigo where numero_mesa = ? and c.data = Current_date and c.status = 'Aberta'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, num_mesa);
+		// Represneta o resultado da execução.
+		ResultSet rs;
+		rs = pstmt.executeQuery();
+		List<Comanda> listComanda = new ArrayList<>();
+		while(rs.next()) {
+			String codigo = Integer.toString(rs.getInt("codigo"));
+			int codigo_produto = rs.getInt("codigo_produto");
+			String nomeProduto = rs.getString("nome_prodrugo");
+			double preco = rs.getDouble("valor");
+			int quantidade = rs.getInt("quantidade");
+			String status = rs.getString("status");
+			Comanda comanda = new Comanda(codigo, codigo_produto, nomeProduto, preco, quantidade, status);
+			listComanda.add(comanda);
+		}
+		
+		// Fechar resultado.
+		rs.close();
+		// Fechar sentença.
+		pstmt.close();
+		// Fechar conexão.
+		conn.close();
+		
+		return listComanda;
+	}
+	
 }

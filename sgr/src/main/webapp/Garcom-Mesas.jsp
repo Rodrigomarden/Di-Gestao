@@ -2,6 +2,9 @@
 <%@page import="sgr.Mesas"%>
 <%@page import="sgr.InformacoesMesa"%>
 <%@page import="sgr.GarcomMesasDao"%>
+<%@page import="sgr.MesaAuxiliar"%>
+<%@page import="sgr.PedidoAndamento"%>
+<%@page import="sgr.Comanda"%>
 <%@page import="java.util.List"%>
 <html lang="en">
 
@@ -34,6 +37,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+	<script src="js/sscript.js"></script>
 </head>
 
 <body>
@@ -100,10 +104,9 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                
-                <!-- /.row -->
+                                <!-- /.row -->
                 <div class="row">
-					<%List<Mesas> mesas = (List<Mesas>) request.getAttribute("mesas"); 
+                	<%List<Mesas> mesas = (List<Mesas>) request.getAttribute("mesas"); 
 						if(mesas != null && !mesas.isEmpty()) {
 							for (Mesas m : mesas) {
 					%>
@@ -120,7 +123,7 @@
 												<div><%=m.getStatus() %></div>
 											</div>
 											<div class="col-xs-3 text-right">
-												Mesa<div class="huge"><%=m.getNum_mesa() %></div>
+												Mesa<div class="huge"><%=m.getNum_mesa()%></div>
 											</div>
 										</div>
 										<div class="tab-pane fade" id="-<%=m.getNum_mesa()%>">
@@ -130,9 +133,13 @@
                                                 ${nome_garcom}<br>
                                                 <strong>Aguardando:</strong><br>
                                                 <ul>
-                                                    <li>Lasanha</li>
-                                                    <li>Porção de Batatas</li>
-                                                    <li>Porção de Costela</li>
+                                                  <%List<PedidoAndamento> listPedidosAndamento = (List<PedidoAndamento>) request.getAttribute("aguardando"); 
+                                                	if(listPedidosAndamento != null && !listPedidosAndamento.isEmpty()) {
+                                                		for (PedidoAndamento p : listPedidosAndamento) {
+                                                	
+                                                %>
+                                                    <li><%=p.getNome_Prod() %></li>   
+                                                <%}} %>                                                     
                                                 </ul>
 											</div>
 										</div>
@@ -140,21 +147,22 @@
                                 </div>
                             </div>
                                 <div class="panel-footer">
-									<ul class="nav nav-pills">
+									<ul class="nav nav-pills" id="myTab">
                                         <!-- Informações Gerais da Mesa -->
                                         <li>
                                             <button href="#<%=m.getNum_mesa() %>" data-toggle="tab" class="btn btn-primary"><i class="fa fa-home"></i></button>
                                         </li>
                                         <!-- Informações mais detalhadas -->
+                                        
                                         <li>
-                                            <button href="#-<%=m.getNum_mesa() %>" data-toggle="tab" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
+                                            <button onclick="modal_refresh(<%=m.getNum_mesa() %>)" data-toggle="tab" data-target="#-<%=m.getNum_mesa()%>" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
                                         </li>
                                         <!-- Comanda -->
                                         <li>
                                             <button href="#" data-toggle="modal" data-target="#comanda<%=m.getNum_mesa() %>" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
                                         </li>
                                         <li>
-                                        <a href="garcom_mesas?operacao=informacoes&num_mesa=<%=m.getNum_mesa() %>">link</a>
+                                        <a onclick="modal_refresh(<%=m.getNum_mesa() %>)" data-target="#-<%=m.getNum_mesa()%>" >link</a>
                                         </li>
                                         <!-- Novo Pedido -->
                                         <!--<li>
@@ -168,10 +176,92 @@
                                 </div>
                         </div>
                     </div>
-                    <%}} %>
-                </div>
-                <!-- /.row -->
 
+
+<!-- Modal (Visualizar Comanda) -->
+                <div class="modal fade" id="comanda<%=m.getNum_mesa() %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">Visualizar Comanda Nº: X <% %> Mesa Nº: <%=m.getNum_mesa() %></h4>
+                            	
+                            </div>
+                            <form>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Nome</th>
+                                                            <th>Preço</th>
+                                                            <th>Quantidade</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <%List<Comanda> comanda = (List<Comanda>) request.getAttribute("comanda"); 
+                                                    if(comanda != null && !comanda.isEmpty()) {
+                                                    		double total=0;
+                                                    		for(Comanda c : comanda) {
+                                                    %>
+                                                        <tr>
+                                                            <td><%=c.getCodigo_produto() %></td>
+                                                            <td><%=c.getNomeProduto() %></td>
+                                                            <td><%=c.getPreco() %></td>
+                                                            <td><%=c.getQuantidade() %></td>
+                                                            <td><%=c.getStatus() %></td>
+                                                        </tr>
+                                                        <%total+=(c.getPreco()*c.getQuantidade()); } %>
+                                                        <tr>
+                                                        	<td></td>
+                                                        	<th>Total</th>
+                                                        	<td><%=total%></td>
+                                                        	<td></td>
+                                                        	<td></td>
+                                                        </tr>
+                                                    <%} else {%>
+                                                    	<tr>
+                                                    		<td></td>
+                                                    		<td>Não há pedidos Cadastrados.</td>
+                                                    		<td></td>
+                                                    		<td></td>
+                                                    		<td></td>
+                                                    	</tr>
+                                                    	<tr>
+                                                        	<td></td>
+                                                        	<th>Total</th>
+                                                        	<td>0.00</td>
+                                                        	<td></td>
+                                                        	<td></td>
+                                                        </tr>
+                                                    	<%} %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <ul class="nav nav-pills">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle"></i>  Fechar</button>
+                                        <button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-plus-circle"></i>  Novo Pedido</button>
+                                        <button type="button" class="btn btn-success " data-dismiss="modal"><i class="fa fa-money"></i>  Fechar Comanda</button>
+                                    </ul>
+                                </div>
+                            </form>    
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal --> 
+                <%}} %>
+          </div>
+		  <!-- /.row -->
               <!-- Modal (Chamar Gerente) -->
                 <div class="modal fade" id="gerente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -214,88 +304,6 @@
                 </div>
                 <!-- /.modal -->  
                 
-
-                <!-- Modal (Visualizar Comanda) -->
-                <div class="modal fade" id="comanda1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title" id="myModalLabel">Visualizar Comanda Nº: X Mesa Nº: Y</h4>
-                            </div>
-                            <form>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Nome</th>
-                                                            <th>Preço</th>
-                                                            <th>Quantidade</th>
-                                                            <th>Status</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>22</td>
-                                                            <td>Coca 2L</td>
-                                                            <td>6,00</td>
-                                                            <td>03</td>
-                                                            <td>Entregue</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>12</td>
-                                                            <td>Lasanha</td>
-                                                            <td>14,20</td>
-                                                            <td>01</td>
-                                                            <td>Aguardando</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>06</td>
-                                                            <td>Porção de Batatas</td>
-                                                            <td>19,90</td>
-                                                            <td>01</td>
-                                                            <td>Aguardando</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>07</td>
-                                                            <td>Porção de Costela</td>
-                                                            <td>21,90</td>
-                                                            <td>02</td>
-                                                            <td>Aguardando</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <table class="table table-hover">
-                                                    <tr>
-                                                        <th>TOTAL</th>
-                                                        <td>256,14</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <ul class="nav nav-pills">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle"></i>  Fechar</button>
-                                        <button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-plus-circle"></i>  Novo Pedido</button>
-                                        <button type="button" class="btn btn-success " data-dismiss="modal"><i class="fa fa-money"></i>  Fechar Comanda</button>
-                                    </ul>
-                                </div>
-                            </form>    
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal --> 
-
-
-
 
         </div>
         <!-- /#page-wrapper -->
