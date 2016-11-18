@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Di-Gestão - Mesas</title>
+    <title>Di-Gestï¿½o - Mesas</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="Garcom-Mesas/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="garcom_mesas">Di-Gestão - Garçom</a>
+                <a class="navbar-brand" href="garcom_mesas">Di-Gestï¿½o - Garï¿½om</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -65,7 +65,7 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuraï¿½ï¿½es</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
@@ -115,7 +115,7 @@
                             <div class="panel-heading">
                                 <div class="row">
 									<div class="tab-content">
-										<div class="tab-pane fade in active" id="<%=m.getNum_mesa() %>">
+										<div class="tab-pane fade <% if (request.getAttribute("codigo_comanda") == null) out.write("in active"); %>" id="<%=m.getNum_mesa() %>">
 											<div class="col-xs-3">
 												<i class="glyphicon glyphicon-cutlery fa-3x"></i>
 											</div>
@@ -126,7 +126,7 @@
 												Mesa<div class="huge"><%=m.getNum_mesa()%></div>
 											</div>
 										</div>
-										<div class="tab-pane fade" id="-<%=m.getNum_mesa()%>">
+										<div class="tab-pane fade <% if (request.getAttribute("codigo_comanda") != null) out.write("in active"); %>" id="-<%=m.getNum_mesa()%>">
 											<div class="col-xs-12">
                                                 ${codigo_comanda}<br> 
 												<!-- Numero da Comanda -->
@@ -148,14 +148,14 @@
                             </div>
                                 <div class="panel-footer">
 									<ul class="nav nav-pills" id="myTab">
-                                        <!-- Informações Gerais da Mesa -->
+                                        <!-- Informaï¿½ï¿½es Gerais da Mesa -->
                                         <li>
                                             <button href="#<%=m.getNum_mesa() %>" data-toggle="tab" class="btn btn-primary"><i class="fa fa-home"></i></button>
                                         </li>
-                                        <!-- Informações mais detalhadas -->
+                                        <!-- Informaï¿½ï¿½es mais detalhadas -->
                                         
                                         <li>
-                                            <button onclick="modal_refresh(<%=m.getNum_mesa() %>)" data-toggle="tab" data-target="#-<%=m.getNum_mesa()%>" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
+                                            <button onclick="modal_refresh(<%=m.getNum_mesa() %>)" id="showBtnDetails" data-toggle="tab" data-target="#-<%=m.getNum_mesa()%>" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
                                         </li>
                                         <!-- Comanda -->
                                         <li>
@@ -183,8 +183,8 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title" id="myModalLabel">Visualizar Comanda Nº: X <% %> Mesa Nº: <%=m.getNum_mesa() %></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">ï¿½</button>
+                                <h4 class="modal-title" id="myModalLabel">Visualizar Comanda Mesa NÂ°: <%=m.getNum_mesa() %></h4>
                             	
                             </div>
                             <form>
@@ -197,7 +197,7 @@
                                                         <tr>
                                                             <th>ID</th>
                                                             <th>Nome</th>
-                                                            <th>Preço</th>
+                                                            <th>PreÃ§o</th>
                                                             <th>Quantidade</th>
                                                             <th>Status</th>
                                                         </tr>
@@ -226,7 +226,7 @@
                                                     <%} else {%>
                                                     	<tr>
                                                     		<td></td>
-                                                    		<td>Não há pedidos Cadastrados.</td>
+                                                    		<td>NÃ£o hÃ¡ pedidos Cadastrados.</td>
                                                     		<td></td>
                                                     		<td></td>
                                                     		<td></td>
@@ -267,7 +267,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">ï¿½</button>
                                 <h4 class="modal-title" id="myModalLabel">Chamar Gerente</h4>
                             </div>
                             <form>

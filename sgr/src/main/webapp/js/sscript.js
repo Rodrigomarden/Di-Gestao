@@ -5,8 +5,26 @@ function excluir(){
 	}
 	else alert("Exclusao cancelada!!!")
 }
-function modal_refresh(mesaAux)
-{
+
+$("#showFullDetails").on("show.bs.collapse shown.bs.collapse",function(event){
+    alert("Test");
+});
+
+
+function modal_refresh(mesaAux) {
+	/*$.ajax({
+		method: "GET",
+		url: "http://localhost:9090/sgr/garcom_mesas",
+		data: {
+			operacao: informacoes,
+			num_mesa: mesaAux
+		}
+	}).done(function (html) {
+		$("#id-container").html(html);
+		
+	}).fail(fucntion (jqXHR, textStatus) {
+		doStuff();
+	});*/
 	window.open("http://localhost:9090/sgr/garcom_mesas?operacao=informacoes&num_mesa=" + mesaAux, "_self");
 }
 

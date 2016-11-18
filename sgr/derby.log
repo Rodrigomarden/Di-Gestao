@@ -1,17 +1,17 @@
 ----------------------------------------------------------------
-Mon Nov 14 18:48:36 BRST 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0158-6499-442c-0000063698a0 
-on database directory C:\Users\rodri\git\Di-Gestao\sgr\bd with class loader WebappClassLoader
+Fri Nov 18 20:57:21 BRST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0158-79a8-96d9-000006e6b730 
+on database directory C:\Users\Alunoinf_2\git\Di-Gestao\sgr\bd with class loader WebappClassLoader
   context: /sgr
   delegate: false
   repositories:
 ----------> Parent Classloader:
-ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.2, parent: sun.misc.Launcher$AppClassLoader@55f96302]
+ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.2, parent: sun.misc.Launcher$AppClassLoader@5c647e05]
  
-Loaded from file:/C:/Users/rodri/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
+Loaded from file:/C:/Users/Alunoinf_2/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_111-b14
-user.dir=C:\Users\rodri\git\Di-Gestao\sgr
+java.runtime.version=1.8.0_91-b15
+user.dir=C:\Users\Alunoinf_2\git\Di-Gestao\sgr
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
