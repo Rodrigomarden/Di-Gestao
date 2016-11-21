@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="sgr.Mesas"%>
+<%@page import="sgr.ExibirComanda"%>
 <%@page import="sgr.InformacoesMesa"%>
 <%@page import="sgr.GarcomMesasDao"%>
 <%@page import="sgr.MesaAuxiliar"%>
@@ -57,26 +58,6 @@
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> Matheus  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configura��es</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -87,6 +68,9 @@
                         <li>
                             <!-- Button trigger modal -->
                             <a href="#" data-toggle="modal" data-target="#gerente"><i class="fa fa-times-circle"></i> Chamar Gerente</a>
+                        </li>
+                        <li>
+                        	<a href="logout"><i class="fa fa-times-circle"></i> Sair</a>
                         </li>
                     </ul>
                 </div>
@@ -115,7 +99,7 @@
                             <div class="panel-heading">
                                 <div class="row">
 									<div class="tab-content">
-										<div class="tab-pane fade <% if (request.getAttribute("codigo_comanda") == null) out.write("in active"); %>" id="<%=m.getNum_mesa() %>">
+										<div class="tab-pane fade <% if ( request.getAttribute("codigo_comanda") == null || Integer.parseInt(request.getAttribute("comanda_mesa").toString()) != m.getNum_mesa() ) out.write("in active"); %>" id="<%=m.getNum_mesa() %>">
 											<div class="col-xs-3">
 												<i class="glyphicon glyphicon-cutlery fa-3x"></i>
 											</div>
@@ -126,7 +110,7 @@
 												Mesa<div class="huge"><%=m.getNum_mesa()%></div>
 											</div>
 										</div>
-										<div class="tab-pane fade <% if (request.getAttribute("codigo_comanda") != null) out.write("in active"); %>" id="-<%=m.getNum_mesa()%>">
+										<div class="tab-pane fade <% if ( request.getAttribute("codigo_comanda") != null && Integer.parseInt(request.getAttribute("comanda_mesa").toString()) == m.getNum_mesa() ) out.write("in active"); %>" id="-<%=m.getNum_mesa()%>">
 											<div class="col-xs-12">
                                                 ${codigo_comanda}<br> 
 												<!-- Numero da Comanda -->
@@ -148,119 +132,43 @@
                             </div>
                                 <div class="panel-footer">
 									<ul class="nav nav-pills" id="myTab">
+                                        <%if(m.getStatus().equals("Livre")) {%>
+                                        <!-- Nova Comanda -->
+                                        <li>
+                                        	<button onclick="modal_nova_comanda(<%=m.getNum_mesa() %>)">Nova_Comanda</button>
+                                        </li>
+                                        <%} else {%>
                                         <!-- Informa��es Gerais da Mesa -->
                                         <li>
                                             <button href="#<%=m.getNum_mesa() %>" data-toggle="tab" class="btn btn-primary"><i class="fa fa-home"></i></button>
                                         </li>
                                         <!-- Informa��es mais detalhadas -->
-                                        
                                         <li>
-                                            <button onclick="modal_refresh(<%=m.getNum_mesa() %>)" id="showBtnDetails" data-toggle="tab" data-target="#-<%=m.getNum_mesa()%>" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
+                                            <button onclick="modal_refresh_informacoes(<%=m.getNum_mesa() %>)" data-toggle="tab" data-target="#-<%=m.getNum_mesa()%>" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
                                         </li>
                                         <!-- Comanda -->
-                                        <li>
-                                            <button href="#" data-toggle="modal" data-target="#comanda<%=m.getNum_mesa() %>" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
-                                        </li>
-                                        <li>
-                                        <a onclick="modal_refresh(<%=m.getNum_mesa() %>)" data-target="#-<%=m.getNum_mesa()%>" >link</a>
-                                        </li>
-                                        <!-- Novo Pedido -->
-                                        <!--<li>
-                                            <button href="#" data-toggle="tab" class="btn btn-info" ><i class="fa fa-plus-circle"></i></button>
-                                        </li>
-                                        <!-- Encerrar Comanda/Pagamento -->
-                                        <!--<li>
-                                            <button href="#" data-toggle="tab" class="btn btn-success" ><i class="fa fa-money"></i></button>
-                                        </li>-->
+                                        <%List<ExibirComanda> exibirComandaAbertas = (List<ExibirComanda>) request.getAttribute("exibirComanda");
+                                        	if(exibirComandaAbertas != null && !exibirComandaAbertas.isEmpty()) {
+                                        		for(ExibirComanda ec : exibirComandaAbertas) {
+                                        			if(ec.getCodigo()==m.getNum_mesa()) {
+                                        			%>
+	                                        			<li>
+	                                            			<button onclick="modal_comanda(<%=m.getNum_mesa() %>)"><i class="fa fa-list-alt"></i></button>
+	                                        			</li>
+                                        		<%}
+                                        		}
+                                        	}%>
+                                        
+                                        <%} %>
                                     </ul>
                                 </div>
+                               
                         </div>
                     </div>
-
-
-<!-- Modal (Visualizar Comanda) -->
-                <div class="modal fade" id="comanda<%=m.getNum_mesa() %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
-                                <h4 class="modal-title" id="myModalLabel">Visualizar Comanda Mesa N°: <%=m.getNum_mesa() %></h4>
-                            	
-                            </div>
-                            <form>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Nome</th>
-                                                            <th>Preço</th>
-                                                            <th>Quantidade</th>
-                                                            <th>Status</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <%List<Comanda> comanda = (List<Comanda>) request.getAttribute("comanda"); 
-                                                    if(comanda != null && !comanda.isEmpty()) {
-                                                    		double total=0;
-                                                    		for(Comanda c : comanda) {
-                                                    %>
-                                                        <tr>
-                                                            <td><%=c.getCodigo_produto() %></td>
-                                                            <td><%=c.getNomeProduto() %></td>
-                                                            <td><%=c.getPreco() %></td>
-                                                            <td><%=c.getQuantidade() %></td>
-                                                            <td><%=c.getStatus() %></td>
-                                                        </tr>
-                                                        <%total+=(c.getPreco()*c.getQuantidade()); } %>
-                                                        <tr>
-                                                        	<td></td>
-                                                        	<th>Total</th>
-                                                        	<td><%=total%></td>
-                                                        	<td></td>
-                                                        	<td></td>
-                                                        </tr>
-                                                    <%} else {%>
-                                                    	<tr>
-                                                    		<td></td>
-                                                    		<td>Não há pedidos Cadastrados.</td>
-                                                    		<td></td>
-                                                    		<td></td>
-                                                    		<td></td>
-                                                    	</tr>
-                                                    	<tr>
-                                                        	<td></td>
-                                                        	<th>Total</th>
-                                                        	<td>0.00</td>
-                                                        	<td></td>
-                                                        	<td></td>
-                                                        </tr>
-                                                    	<%} %>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <ul class="nav nav-pills">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle"></i>  Fechar</button>
-                                        <button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-plus-circle"></i>  Novo Pedido</button>
-                                        <button type="button" class="btn btn-success " data-dismiss="modal"><i class="fa fa-money"></i>  Fechar Comanda</button>
-                                    </ul>
-                                </div>
-                            </form>    
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal --> 
                 <%}} %>
           </div>
+          
+          <form>
 		  <!-- /.row -->
               <!-- Modal (Chamar Gerente) -->
                 <div class="modal fade" id="gerente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -270,7 +178,6 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
                                 <h4 class="modal-title" id="myModalLabel">Chamar Gerente</h4>
                             </div>
-                            <form>
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-xs-8">
@@ -296,14 +203,16 @@
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                     <button type="submit" class="btn btn-primary" data-dismiss="modal">Chamar Gerente</button>
                                 </div>
-                            </form>    
+                            
                         </div>
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->  
+                <!-- /.modal -->
                 
+                
+                </form>    
 
         </div>
         <!-- /#page-wrapper -->

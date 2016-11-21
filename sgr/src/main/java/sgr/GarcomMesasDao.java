@@ -41,7 +41,7 @@ public class GarcomMesasDao {
 		// Abrir uma conexão com o banco de dados.
 		Connection conn = DriverManager.getConnection(URL);
 		// Executar instrução SQL.
-		String sql = "select codigo, nome from comanda join funcionario_dados on cpf_garçom = cpf where numero_mesa = ? and data=CURRENT_DATE and hora_inicio <= CURRENT_TIME and hora_fechamento >= CURRENT_TIME";
+		String sql = "select codigo, nome from comanda join funcionario_dados on cpf_garçom = cpf where numero_mesa = ? and data=CURRENT_DATE and hora_inicio <= CURRENT_TIME and status = 'Aberta'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, num_mesa);
 		// Represneta o resultado da execução.
@@ -63,11 +63,11 @@ public class GarcomMesasDao {
 		return informacoesMesa;
 	}
 	
-	public static List<PedidoAndamento> pedidosAdamento(int num_mesa) throws SQLException {
+	public static List<PedidoAndamento> pedidosAndamento(int num_mesa) throws SQLException {
 		// Abrir uma conexão com o banco de dados.
 		Connection conn = DriverManager.getConnection(URL);
 		// Executar instrução SQL.
-		String sql = "select nome_prodrugo from registra_pedido r join produto on codigo_produto=codigo join comanda c on codigo_comanda=c.codigo where numero_mesa = ? and r.status = 'Aguardando'";
+		String sql = "select nome_produto from registra_pedido r join produto on codigo_produto=codigo join comanda c on codigo_comanda=c.codigo where numero_mesa = ? and r.status = 'Aguardando'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, num_mesa);
 		// Represneta o resultado da execução.
@@ -75,7 +75,7 @@ public class GarcomMesasDao {
 		rs = pstmt.executeQuery();
 		List<PedidoAndamento> listPedAndamento = new ArrayList<>();
 		while(rs.next()) {
-			String nome_Prod = rs.getString("nome_prodrugo");
+			String nome_Prod = rs.getString("nome_produto");
 			PedidoAndamento pedAndamento = new PedidoAndamento(nome_Prod);
 			listPedAndamento.add(pedAndamento);
 		}
@@ -90,36 +90,27 @@ public class GarcomMesasDao {
 		return listPedAndamento;
 	}
 	
-	public static List<Comanda> obterComanda(int num_mesa) throws SQLException {
+	public static List<ExibirComanda> exibirComanda() throws SQLException {
 		// Abrir uma conexão com o banco de dados.
 		Connection conn = DriverManager.getConnection(URL);
 		// Executar instrução SQL.
-		String sql = "select codigo, codigo_produto, nome_prodrugo, valor, quantidade, r.status from comanda c join registra_pedido r on c.codigo=codigo_comanda join produto p on codigo_produto=p.codigo where numero_mesa = ? and c.data = Current_date and c.status = 'Aberta'";
+		String sql = "select numero_mesa from comanda where data = Current_date and status = 'Aberta'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, num_mesa);
 		// Represneta o resultado da execução.
 		ResultSet rs;
 		rs = pstmt.executeQuery();
-		List<Comanda> listComanda = new ArrayList<>();
+		List<ExibirComanda> exbcmd = new ArrayList<>();
 		while(rs.next()) {
-			String codigo = Integer.toString(rs.getInt("codigo"));
-			int codigo_produto = rs.getInt("codigo_produto");
-			String nomeProduto = rs.getString("nome_prodrugo");
-			double preco = rs.getDouble("valor");
-			int quantidade = rs.getInt("quantidade");
-			String status = rs.getString("status");
-			Comanda comanda = new Comanda(codigo, codigo_produto, nomeProduto, preco, quantidade, status);
-			listComanda.add(comanda);
+			ExibirComanda exibircomanda = new ExibirComanda(rs.getInt("numero_mesa"));
+			exbcmd.add(exibircomanda);
 		}
-		
 		// Fechar resultado.
 		rs.close();
 		// Fechar sentença.
 		pstmt.close();
 		// Fechar conexão.
 		conn.close();
-		
-		return listComanda;
+		return exbcmd;
 	}
 	
 }

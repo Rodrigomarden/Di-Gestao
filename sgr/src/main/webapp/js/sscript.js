@@ -1,61 +1,15 @@
-function excluir(){
-	decisao=confirm("Deseja excluir o pedido 1?");
-	if(decisao){
-		alert("Pedido excluido com sucesso!!!");
-	}
-	else alert("Exclusao cancelada!!!")
-}
-
-$("#showFullDetails").on("show.bs.collapse shown.bs.collapse",function(event){
-    alert("Test");
-});
-
-
-function modal_refresh(mesaAux) {
-	/*$.ajax({
-		method: "GET",
-		url: "http://localhost:9090/sgr/garcom_mesas",
-		data: {
-			operacao: informacoes,
-			num_mesa: mesaAux
-		}
-	}).done(function (html) {
-		$("#id-container").html(html);
-		
-	}).fail(fucntion (jqXHR, textStatus) {
-		doStuff();
-	});*/
+function modal_refresh_informacoes(mesaAux) {
 	window.open("http://localhost:9090/sgr/garcom_mesas?operacao=informacoes&num_mesa=" + mesaAux, "_self");
 }
 
-function modal_debito()
-{
-	window.open("http://localhost:9090/sgr/garcom_mesas?operacao=informacoes&num_mesa=" + mesaAux, "_self");
-	window.open('PagamentoCartaoDebito.jsp',"Pagamento dinheiro","width=500, height=500, top=100, left=850, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
+function modal_comanda(mesaAux) {
+	window.open('garcom_comanda?num_mesa=' + mesaAux, "Garcom-Comanda","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
 }
-function modal_credito()
-{
-	window.open('PagamentoCartaoCredito.jsp',"Pagamento dinheiro","width=500, height=500, top=100, left=850, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
+
+function modal_nova_comanda(mesaAux) {
+	window.open('nova_comanda?num_mesa=' + mesaAux, "Nova_Comanda","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
 }
-function modal_cheque()
-{
-	window.open('PagamentoCheque.jsp',"Pagamento dinheiro","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
-}
-function modal_vale()
-{
-	window.open('PagamentoCheque.jsp',"Pagamento dinheiro","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
-}
-function modal_cadastro() 
-{
-	window.open('cadastro', "Cadastro Produto","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
-}
-function modal_alterarProduto(codigo, produto, precounit, estoque)
-{
-	window.open('alterar?codigo=' + codigo + '&produto=' + produto + '&precounit=' + precounit + '&estoque=' + estoque, "Alterar Produto","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
-}
-function help(){
-	alert("Olaaa!!!.")
-}
-function taxa_entrega(){
-	alert("Para finalizar o pagamento e necessario selecionar a taxa de entrega.");
+
+function modal_novo_pedido(mesaAux) {
+	window.open('novo_pedido?num_mesa=' + mesaAux, "Novo_Pedido","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
 }
