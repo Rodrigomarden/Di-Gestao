@@ -27,16 +27,21 @@ public class LoginController extends HttpServlet {
 			String op = valor(req, "operacao", "");
 			String usuario = valor(req, "usuario", "");
 			String senha = valor(req, "senha", "");
+			String tipo = "";
 			if (op.equals("entrar")) {
 				boolean resposta = LoginDao.comparar(usuario, senha);
+				tipo = LoginDao.tipo(usuario, senha);
 				if (resposta == true) {
 
 					//Obter a sessão.
 					HttpSession session = req.getSession();
 					//Incluir variável na região de memória da sessão.
 					session.setAttribute("usuario", usuario);
-					
-					resp.sendRedirect("garcom_mesas");
+					if(tipo.equals("Garçom")) {
+						resp.sendRedirect("garcom_mesas");
+					} else if(tipo.equals("Gerente")) {
+						resp.sendRedirect("gerente_mesas");
+					}
 				} else {
 					msg = "Usuário ou senha incorreta.";
 				}

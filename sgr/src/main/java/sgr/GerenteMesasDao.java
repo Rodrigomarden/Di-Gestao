@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-public class GarcomMesasDao {
+public class GerenteMesasDao {
 	private static final String URL = "jdbc:derby:bd;create=true";
 	
 	public static List<Mesas> listar() throws SQLException {
