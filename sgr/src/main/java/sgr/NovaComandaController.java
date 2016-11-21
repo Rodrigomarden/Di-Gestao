@@ -41,7 +41,7 @@ import javax.servlet.http.HttpServletResponse;
 				List<Garcom> gacons = NovaComandaDao.nomeGarcom();
 				req.setAttribute("nomes", gacons);
 				req.setAttribute("num_mesa", num_mesa);
-				req.getRequestDispatcher("Nova_Comanda.jsp").forward(req, resp);
+				req.getRequestDispatcher("Nova-Comanda.jsp").forward(req, resp);
 			}catch (Exception e) {
 				e.printStackTrace(resp.getWriter());
 			}

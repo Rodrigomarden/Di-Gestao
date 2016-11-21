@@ -183,7 +183,7 @@
 									</span>
 									<div class="sair-posicao-LocProd">
 										<button class="sairLoc">
-											<a href="http://localhost:9090/sgr/garcom_comanda?num_mesa=<%=request.getAttribute("num_mesa") %>"> <img style="width: 60px;"
+											<a href="http://localhost:9090/sgr/gerente_mesas"> <img style="width: 60px;"
 												src="Mesas/icVoltar.png">Sair
 											</a>
 										</button>

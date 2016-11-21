@@ -53,8 +53,6 @@ public class GarcomMesasController extends HttpServlet {
 					req.setAttribute("aguardando", listPedidosAndamento);
 				}
 				
-			} else if(op.equals("obtComanda")) {
-				
 			}
 			req.setAttribute("comanda_mesa", num_mesa);
 			
