@@ -43,7 +43,10 @@
 									</div>
 									<br>
 									<br>
-
+									<button class="cadastrarLoc" onclick="modal_cadastro()">
+											<img style="width: 50px;" src="Mesas/lapis.png">&nbsp;Cadastrar Produto
+									</button>
+									
 									<table class="tabela-produtos-mesa table">
 										<thead>
 											<tr style="background-color: #F2F2F2; font-weight: bold;">
@@ -87,7 +90,7 @@
 													onclick="modal_alterarProduto('<%=p.getCodigo()%>', '<%=p.getNome_produto()%>', '<%=p.getValor()%>', '<%=p.getQnt_pessoas()%>', '<%=p.getContem() %>')"><img
 														src="Mesas/icAlterarProduto.png" /></a></td>
 												<td><a
-													href="gerenciar_produto?operacao=excluir&codigo=<%=p.getCodigo()%>&produto=<%=p.getNome_produto()%>"><img
+													href="gerenciar_produto?operacao=excluir&codigo=<%=p.getCodigo()%>&nome_produto=<%=p.getNome_produto()%>"><img
 														src="Mesas/icExcluirProduto.png" /></a></td>
 											</tr>
 											<%				}
@@ -106,7 +109,7 @@
 													onclick="modal_alterarProduto('<%=p.getCodigo()%>', '<%=p.getNome_produto()%>', '<%=p.getValor()%>', '<%=p.getQnt_pessoas()%>', '<%=p.getContem() %>')"><img
 														src="Mesas/icAlterarProduto.png" /></a></td>
 												<td><a
-													href="gerenciar_produto?operacao=excluir&codigo=<%=p.getCodigo()%>&produto=<%=p.getNome_produto()%>"><img
+													href="gerenciar_produto?operacao=excluir&codigo=<%=p.getCodigo()%>&nome_produto=<%=p.getNome_produto()%>"><img
 														src="Mesas/icExcluirProduto.png" /></a></td>
 											</tr>
 											<%						//Busca por codigo não existe.
@@ -129,7 +132,7 @@
 													onclick="modal_alterarProduto('<%=p.getCodigo()%>', '<%=p.getNome_produto()%>', '<%=p.getValor()%>', '<%=p.getQnt_pessoas()%>', '<%=p.getContem() %>')"><img
 														src="Mesas/icAlterarProduto.png" /></a></td>
 												<td><a
-													href="gerenciar_produto?operacao=excluir&codigo=<%=p.getCodigo()%>&produto=<%=p.getNome_produto()%>"><img
+													href="gerenciar_produto?operacao=excluir&codigo=<%=p.getCodigo()%>&nome_produto=<%=p.getNome_produto()%>"><img
 														src="Mesas/icExcluirProduto.png" /></a></td>
 											</tr>
 											<%
@@ -177,9 +180,10 @@
 										</tr>
 
 									</table>
-
+					<% if(request.getAttribute("msg") != null) {%>
+							<script>alert("${msg}")</script>
+					<%}%>
 									<span class="chek">&nbsp;&nbsp;&nbsp;&nbsp;
-										<h5>Para adicionar clique uma vez no "+1."</h5>
 									</span>
 									<div class="sair-posicao-LocProd">
 										<button class="sairLoc">

@@ -1,6 +1,9 @@
 package sgr;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.derby.impl.jdbc.SQLExceptionFactory;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,19 +14,29 @@ public class GerenciarProdutoDao {
 	
 	private static final String URL = "jdbc:derby:bd;create=true";
 
-	public static void excluir(int codigo, String nome_produto) throws SQLException {
+	public static String excluir(int codigo, String nome_produto) throws SQLException {
+		String msg = "";
 		// Abrir uma conexão com o banco de dados.
-				Connection conn = DriverManager.getConnection(URL);
-				// Executar instrução SQL.
-				String sql = "delete from produto where codigo = ? and nome_produto = ?";
-				PreparedStatement pstmt = (PreparedStatement) conn.prepareStatement(sql);
-				pstmt.setInt(1, codigo);
-				pstmt.setString(2, nome_produto);
-				pstmt.executeUpdate();
-				// Fechar sentença.
-				pstmt.close();
-				// Fechar conexão.
-				conn.close();
+		Connection conn = DriverManager.getConnection(URL);
+		conn.setAutoCommit(false);
+		try {
+			// Executar instrução SQL.
+			String sql = "delete from produto where codigo = ? and nome_produto = ?";
+			PreparedStatement pstmt = (PreparedStatement) conn.prepareStatement(sql);
+			pstmt.setInt(1, codigo);
+			pstmt.setString(2, nome_produto);
+			pstmt.executeUpdate();
+			// Fechar sentença.
+			pstmt.close();
+			conn.commit();
+		} catch(SQLException e) {
+			conn.rollback();
+			msg="Produto não pode ser excluido, está sendo usado em uma comanda.";
+		} finally {
+			// Fechar conexão.
+			conn.close();
+		}
+		return msg;
 	}
 	
 	public static List<Produto> listar() throws SQLException {

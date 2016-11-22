@@ -23,11 +23,11 @@
 	      </tr>
 	      <tr>
 	        <td>Valor:</td>
-	        <td><input name="valor" type="text" value="<%=px.getValor()%>" pattern="[0-9]+$" required></td>
+	        <td><input name="valor" type="number" step="any" value="<%=px.getValor()%>" required></td>
 	      </tr>
 	      <tr>
 	        <td>Quantidade Pessoas:</td>
-	        <td><input name="qnt_pessoas" type="text" step=0.01 value="<%=px.getQnt_pessoas()%>" pattern="([0-9]{1.3}\.)?[0-9]{1.3},[0-9]{2}$"required></td>
+	        <td><input name="qnt_pessoas" type="number" step="any" value="<%=px.getQnt_pessoas()%>" pattern="[0-9]+$" required></td>
 	      </tr>
 	      <tr>
 	        <td>Contem:</td>

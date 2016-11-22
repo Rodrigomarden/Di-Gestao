@@ -21,3 +21,8 @@ function modal_novo_pedido(mesaAux) {
 function modal_alterarProduto(codigo, produto, valor, qnt_pessoas, contem) {
 	window.open('alterar?codigo=' + codigo + '&produto=' + produto + '&valor=' + valor + '&qnt_pessoas=' + qnt_pessoas + '&contem=' + contem, "Alterar Produto","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
 }
+
+function modal_cadastro() 
+{
+	window.open('cadastrar_produto', "Cadastro Produto","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
+}
