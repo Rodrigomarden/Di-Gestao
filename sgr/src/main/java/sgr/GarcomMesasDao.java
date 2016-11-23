@@ -41,7 +41,7 @@ public class GarcomMesasDao {
 		// Abrir uma conexão com o banco de dados.
 		Connection conn = DriverManager.getConnection(URL);
 		// Executar instrução SQL.
-		String sql = "select codigo, nome from comanda join funcionario_dados on cpf_garçom = cpf where numero_mesa = ? and data=CURRENT_DATE and hora_inicio <= CURRENT_TIME and status = 'Aberta'";
+		String sql = "select codigo, nome from comanda c join funcionario_dados on cpf_garçom = cpf where numero_mesa = ? and data=CURRENT_DATE and hora_inicio <= CURRENT_TIME and c.status = 'Aberta'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, num_mesa);
 		// Represneta o resultado da execução.
@@ -111,6 +111,29 @@ public class GarcomMesasDao {
 		// Fechar conexão.
 		conn.close();
 		return exbcmd;
+	}
+	
+	public static List<String> tipo() throws SQLException {
+		List<String> gerentes = new ArrayList<>();
+		String gerente = "";
+		// Abrir uma conexão com o banco de dados.
+		Connection conn = DriverManager.getConnection(URL);
+		// Executar instrução SQL.
+		String sql = "select nome FROM Funcionario_Dados where tipo_funcionario = 'Gerente'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs;
+		rs = pstmt.executeQuery();
+		while (rs.next()) {
+			gerente = rs.getString("nome");
+			gerentes.add(gerente);
+		}
+		// Fechar resultado.
+		rs.close();
+		// Fechar sentença.
+		pstmt.close();
+		// Fechar conexão.
+		conn.close();
+		return gerentes;
 	}
 	
 }

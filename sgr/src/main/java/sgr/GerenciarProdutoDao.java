@@ -2,7 +2,6 @@ package sgr;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.derby.impl.jdbc.SQLExceptionFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

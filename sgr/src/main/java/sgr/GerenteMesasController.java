@@ -37,7 +37,7 @@ public class GerenteMesasController extends HttpServlet {
 			String op = valor(req, "operacao", "");
 			int num_mesa = toInt(req, "num_mesa", "0");
 			if (op.equals("informacoes")) {
-				InformacoesMesa info = GarcomMesasDao.informacoes(num_mesa);
+				InformacoesMesa info = GerenteMesasDao.informacoes(num_mesa);
 				List<PedidoAndamento> listPedidosAndamento = GerenteMesasDao.pedidosAndamento(num_mesa);
 				if(info.getNome() != null) {
 					req.setAttribute("codigo_comanda", "Nº: "+info.getCodigo());
@@ -65,7 +65,7 @@ public class GerenteMesasController extends HttpServlet {
 			//Listar Mesas
 			List<Mesas> mesas = GerenteMesasDao.listar();
 			req.setAttribute("mesas", mesas);
-			req.getRequestDispatcher("Gerente-Mesas.jsp").forward(req, resp);
+			req.getRequestDispatcher("GerenteMesasView.jsp").forward(req, resp);
 		}catch (Exception e) {
 			e.printStackTrace(resp.getWriter());
 		}

@@ -14,7 +14,7 @@ public class LoginDao {
 		// Abrir uma conexão com o banco de dados.
 		Connection conn = DriverManager.getConnection(URL);
 		// Executar instrução SQL.
-		String sql = "select cpf, senha FROM Funcionario_Dados WHERE cpf=? AND senha=?";
+		String sql = "select cpf, senha FROM Funcionario_Dados WHERE cpf=? AND senha=? AND status='Ativo'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, usuario);
 		pstmt.setString(2, senha);

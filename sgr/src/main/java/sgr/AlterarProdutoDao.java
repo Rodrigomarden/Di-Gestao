@@ -11,7 +11,8 @@ public class AlterarProdutoDao {
 	
 	private static final String URL = "jdbc:derby:bd;create=true";
 	
-	public static void alterar(int codigo, String nome_produto, double valor, int quantidade_pessoas, String contem) throws SQLException {
+	public static void alterar(int codigo, String nome_produto, double valor,
+			int quantidade_pessoas, String contem) throws SQLException {
 		// Abrir uma conexão com o banco de dados.
 		Connection conn = DriverManager.getConnection(URL);
 		// Executar instrução SQL.

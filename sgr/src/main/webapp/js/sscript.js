@@ -22,7 +22,18 @@ function modal_alterarProduto(codigo, produto, valor, qnt_pessoas, contem) {
 	window.open('alterar?codigo=' + codigo + '&produto=' + produto + '&valor=' + valor + '&qnt_pessoas=' + qnt_pessoas + '&contem=' + contem, "Alterar Produto","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
 }
 
-function modal_cadastro() 
-{
+function modal_cadastro() {
 	window.open('cadastrar_produto', "Cadastro Produto","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
+}
+
+function modal_fechar_comanda(mesaAux) {
+	window.open("http://localhost:9090/sgr/garcom_comanda?operacao=fechar&num_mesa=" + mesaAux, "_self");
+}
+
+function modal_cadastro_funcionario() {
+	window.open('cadastrar_funcionario', "Cadastro Funcionario","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
+}
+
+function modal_alterarFuncionario(cpf, senha, tipo, nome, sexo, dataNasc, salario) {
+	window.open('alterar_funcionario?cpf=' + cpf + '&senha=' + senha + '&tipo=' + tipo + '&nome=' + nome + '&sexo=' + sexo + '&dataNasc=' + dataNasc + '&salario=' + salario, "Alterar Funcionario","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
 }

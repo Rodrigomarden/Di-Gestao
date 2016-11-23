@@ -66,10 +66,6 @@
                             <a href="garcom_mesas"><i class="glyphicon glyphicon-cutlery"></i> Mesas</a>
                         </li>
                         <li>
-                            <!-- Button trigger modal -->
-                            <a href="#" data-toggle="modal" data-target="#gerente"><i class="fa fa-times-circle"></i> Chamar Gerente</a>
-                        </li>
-                        <li>
                         	<a href="logout"><i class="fa fa-times-circle"></i> Sair</a>
                         </li>
                     </ul>
@@ -144,7 +140,7 @@
                                         </li>
                                         <!-- Informa��es mais detalhadas -->
                                         <li>
-                                            <button onclick="modal_refresh_informacoes_garcom(<%=m.getNum_mesa() %>)" data-toggle="tab" data-target="#-<%=m.getNum_mesa()%>" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
+                                            <button onclick="modal_informacoes_garcom(<%=m.getNum_mesa() %>)" data-toggle="tab" data-target="#-<%=m.getNum_mesa()%>" class="btn btn-primary"><i class="fa fa-info-circle"></i></button>
                                         </li>
                                         <!-- Comanda -->
                                         <%List<ExibirComanda> exibirComandaAbertas = (List<ExibirComanda>) request.getAttribute("exibirComanda");
@@ -167,52 +163,6 @@
                     </div>
                 <%}} %>
           </div>
-          
-          <form>
-		  <!-- /.row -->
-              <!-- Modal (Chamar Gerente) -->
-                <div class="modal fade" id="gerente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
-                                <h4 class="modal-title" id="myModalLabel">Chamar Gerente</h4>
-                            </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-xs-8">
-
-                                            <div class="form-group">
-                                                <label>Selecione o Gerente:</label>
-                                                <select class="form-control">
-                                                    <option>Gabriella</option>
-                                                    <option>Rodrigo</option>
-                                                    <option>Pedro</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <div class="form-group">
-                                                <label>Numero da Mesa</label>
-                                                <input type="number" min="1" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Chamar Gerente</button>
-                                </div>
-                            
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-                
-                
-                </form>    
 
         </div>
         <!-- /#page-wrapper -->

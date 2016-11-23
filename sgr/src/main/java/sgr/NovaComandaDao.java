@@ -15,7 +15,7 @@ public class NovaComandaDao {
 		// Abrir uma conexão com o banco de dados.
 		Connection conn = DriverManager.getConnection(URL);
 		// Executar instrução SQL.
-		String sql = "select nome, cpf from funcionario_dados where tipo_funcionario = 'Garçom'";
+		String sql = "select nome, cpf from funcionario_dados where tipo_funcionario = 'Garçom' and status = 'Ativo'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		// Represneta o resultado da execução.
 		ResultSet rs = pstmt.executeQuery();

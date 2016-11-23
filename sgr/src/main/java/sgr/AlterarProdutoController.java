@@ -53,7 +53,7 @@ public class AlterarProdutoController extends HttpServlet {
 			}
 			req.setAttribute("msg", msg);
 			req.setAttribute("alterarproduto", alterarproduto);
-			req.getRequestDispatcher("Alterar-Produto.jsp").forward(req, resp);
+			req.getRequestDispatcher("AlterarProdutoView.jsp").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace(resp.getWriter());
 		}

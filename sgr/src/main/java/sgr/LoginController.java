@@ -41,6 +41,10 @@ public class LoginController extends HttpServlet {
 						resp.sendRedirect("garcom_mesas");
 					} else if(tipo.equals("Gerente")) {
 						resp.sendRedirect("gerente_mesas");
+					} else if(tipo.equals("Administrador")) {
+						resp.sendRedirect("gerenciar_funcionario");
+					} else if(tipo.equals("Cozinha")) {
+						resp.sendRedirect("cozinha_pedidos");
 					}
 				} else {
 					msg = "Usuário ou senha incorreta.";

@@ -64,7 +64,7 @@ public class GerenciarProdutoController extends HttpServlet {
 			});
 			req.setAttribute("produtos", produtos);
 			
-			req.getRequestDispatcher("Gerenciar-Produto.jsp").forward(req, resp);
+			req.getRequestDispatcher("GerenciarProdutoView.jsp").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace(resp.getWriter());
 		}

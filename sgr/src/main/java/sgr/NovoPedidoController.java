@@ -65,7 +65,7 @@ public class NovoPedidoController extends HttpServlet {
 			});
 			req.setAttribute("produtos", produtos);
 			
-			req.getRequestDispatcher("Novo-Pedido.jsp").forward(req, resp);
+			req.getRequestDispatcher("NovoPedidoView.jsp").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace(resp.getWriter());
 		}

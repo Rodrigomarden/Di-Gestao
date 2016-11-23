@@ -36,10 +36,18 @@ public class GarcomComandaController extends HttpServlet {
 			String msg;
 			String op = valor(req, "operacao", "");
 			int num_mesa = toInt(req, "num_mesa", "0");
+			int codigo_comanda = 0;
+			if(op.equals("fechar")) {
+				codigo_comanda = GarcomComandaDao.codComanda(num_mesa);
+				GarcomComandaDao.fecharPedidos(codigo_comanda);
+				GarcomComandaDao.fecharComanda(num_mesa);
+				GarcomComandaDao.fecharMesa(num_mesa);
+			}
+			
 			List<Comanda> comanda = GarcomComandaDao.obterComanda(num_mesa);
 			req.setAttribute("comanda", comanda);
 			req.setAttribute("comanda_mesa", num_mesa);
-			req.getRequestDispatcher("Garcom-Comanda.jsp").forward(req, resp);
+			req.getRequestDispatcher("GarcomComandaView.jsp").forward(req, resp);
 		}catch (Exception e) {
 			e.printStackTrace(resp.getWriter());
 		}
