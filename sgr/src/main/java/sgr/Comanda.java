@@ -1,19 +1,21 @@
 package sgr;
 
 public class Comanda {
+
 	private String codigo_comanda;
 	private int codigo_produto;
 	private String nomeProduto;
 	private double preco;
 	private int quantidade;
 	private String status;
-	
+
 	public Comanda() {
-		
+
 	}
 
-	public Comanda(String codigo_comanda ,int codigo_produto, String nomeProduto, double preco, int quantidade, String status) {
-		this.codigo_comanda=codigo_comanda;
+	public Comanda(String codigo_comanda ,int codigo_produto, String nomeProduto,
+                   double preco, int quantidade, String status) {
+        this.codigo_comanda=codigo_comanda;
 		this.codigo_produto = codigo_produto;
 		this.nomeProduto = nomeProduto;
 		this.preco = preco;
@@ -68,7 +70,7 @@ public class Comanda {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
-	
+
+
+
 }

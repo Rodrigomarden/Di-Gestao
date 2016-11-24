@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
+
 public class LoginController extends HttpServlet {
 
 	private String valor(HttpServletRequest req, String param, String padrao) {

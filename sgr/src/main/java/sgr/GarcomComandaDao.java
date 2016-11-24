@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 public class GarcomComandaDao {
+	
 	private static final String URL = "jdbc:derby:bd;create=true";
 	
 	public static List<Comanda> obterComanda(int num_mesa) throws SQLException {

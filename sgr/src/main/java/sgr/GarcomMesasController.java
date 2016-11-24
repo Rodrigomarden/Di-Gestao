@@ -1,4 +1,5 @@
 package sgr;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,7 +37,6 @@ public class GarcomMesasController extends HttpServlet {
 			String msg;
 			String op = valor(req, "operacao", "");
 			int num_mesa = toInt(req, "num_mesa", "0");
-			String nomeGerente = valor(req, "selgerente", "");
 			if (op.equals("informacoes")) {
 				InformacoesMesa info = GarcomMesasDao.informacoes(num_mesa);
 				List<PedidoAndamento> listPedidosAndamento = GarcomMesasDao.pedidosAndamento(num_mesa);

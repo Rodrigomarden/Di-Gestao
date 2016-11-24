@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginDao {
+	
 	private static final String URL = "jdbc:derby:bd;create=true";
 
 	public static boolean comparar(String usuario, String senha) throws SQLException {

@@ -1,4 +1,5 @@
 package sgr;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 public class GarcomMesasDao {
+	
 	private static final String URL = "jdbc:derby:bd;create=true";
 	
 	public static List<Mesas> listar() throws SQLException {
