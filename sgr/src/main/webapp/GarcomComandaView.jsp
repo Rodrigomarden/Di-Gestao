@@ -2,7 +2,7 @@
 <%@page import="sgr.GarcomComandaDao"%>
 <%@page import="sgr.Comanda"%>
 <%@page import="java.util.List"%>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
 
@@ -12,67 +12,85 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Di-Gestï¿½o - Comanda</title>   
+    <title>Mesas</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="Garcom-Mesas/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="Garcom-Mesas/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="Garcom-Mesas/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="Garcom-Mesas/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
 	<script src="js/sscript.js"></script>
 </head>
 
 <body>
-	<h4>Visualizar Comanda Mesa N°: ${comanda_mesa}</h4>
-	<form>
-		<div>
-			<table>
-				<thead>
-					<tr>
-	                    <th>ID</th>
-	                    <th>Nome</th>
-	                    <th>Preço</th>
-	                    <th>Quantidade</th>
-	                    <th>Status</th>
-                    </tr>
-				</thead>
-				<tbody>
-					<%List<Comanda> comanda = (List<Comanda>) request.getAttribute("comanda"); 
-                    if(comanda != null && !comanda.isEmpty()) {
-                    	double total=0;
-                    	for(Comanda c : comanda) {
-                    %>
-                    <tr>
-                    	<td><%=c.getCodigo_produto() %></td>
-                    	<td><%=c.getNomeProduto() %></td>
-                  	 	<td><%=c.getPreco() %></td>
-                    	<td><%=c.getQuantidade() %></td>
-                   	 	<td><%=c.getStatus() %></td>
-                    </tr>
-                    		<%total+=(c.getPreco()*c.getQuantidade()); } %>
-                    <tr>
-                    	<td></td>
-                    	<th>Total</th>
-                    	<td><%=total%></td>
-                    	<td></td>
-                    	<td></td>
-                    </tr>
-                    <%} else {%>
-                    <tr>
-                   		<td></td>
-                    	<td>Não há pedidos Cadastrados.</td>
-                    	<td></td>
-                    	<td></td>
-                    	<td></td>
-                   	</tr>
-                   	<tr>
-                    	<td></td>
-                    	<th>Total</th>
-                    	<td>0.00</td>
-                    	<td></td>
-                    	<td></td>
-                    </tr>
-                 	<%} %>
-				</tbody>
-			</table>
-			<button onclick="modal_novo_pedido(<%=request.getAttribute("comanda_mesa")%>)">Novo Pedido</button>
-			<a href="garcom_comanda?operacao=fechar&num_mesa=<%=request.getAttribute("comanda_mesa")%>">Fechar Comanda</a>
-		</div>
-	</form>
+<div id="wrapper">
+	<div class="container-fluid">
+		<h3>Visualizar Comanda Mesa N°: ${comanda_mesa}</h3>
+		<form>
+			<div>
+				<table class="table table-bordered table-condensed">
+					<thead>
+						<tr>
+		                    <th>ID</th>
+		                    <th>Nome do Produto</th>
+		                    <th>Preço</th>
+		                    <th>Quant.</th>
+		                    <th>Status</th>
+	                    </tr>
+					</thead>
+					<tbody>
+						<%List<Comanda> comanda = (List<Comanda>) request.getAttribute("comanda"); 
+	                    if(comanda != null && !comanda.isEmpty()) {
+	                    	double total=0;
+	                    	for(Comanda c : comanda) {
+	                    %>
+	                    <tr>
+	                    	<td><%=c.getCodigo_produto() %></td>
+	                    	<td><%=c.getNomeProduto() %></td>
+	                  	 	<td><%=c.getPreco() %></td>
+	                    	<td><%=c.getQuantidade() %></td>
+	                   	 	<td><%=c.getStatus() %></td>
+	                    </tr>
+	                    		<%total+=(c.getPreco()*c.getQuantidade()); } %>
+	                    <tr>
+	                    	<td scope="row" colspan="3">Total</td>
+	                    	<td colspan="2"><%=total%></td>
+
+	                    </tr>
+	                    <%} else {%>
+	                    <tr>
+	                    	<td colspan="5">Não há pedidos Cadastrados.</td>
+	                   	</tr>
+	                   	<tr>
+	                    	<td scope="row" colspan="3">Total</td>
+	                    	<td colspan="2">0.00</td>
+	                    </tr>
+	                 	<%} %>
+					</tbody>
+				</table>
+				
+				<div class="col-xs-12">
+					<button class="btn btn-primary btn-block" onclick="modal_novo_pedido(<%=request.getAttribute("comanda_mesa")%>)">Novo Pedido</button>
+					<br>
+				</div>
+				<div class="col-xs-6">
+					<a class="btn btn-success btn-block" href="garcom_comanda?operacao=fechar&num_mesa=<%=request.getAttribute("comanda_mesa")%>">Fechar Comanda</a>
+				</div>
+				<div class="col-xs-6">
+					<button class="btn btn-danger btn-block" onClick="window.close()">Fechar</button>
+				</div>
+			</div>
+		</form>
+	
+	</div>
+</div>
 </body>
 
 </html>

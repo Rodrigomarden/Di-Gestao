@@ -7,7 +7,7 @@ function modal_informacoes_gerente(mesaAux) {
 }
 
 function modal_comanda(mesaAux) {
-	window.open('garcom_comanda?num_mesa=' + mesaAux, "Garcom-Comanda","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
+	window.open('garcom_comanda?num_mesa=' + mesaAux, "Garcom-Comanda","width=500, height=500, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
 }
 
 function modal_nova_comanda(mesaAux) {

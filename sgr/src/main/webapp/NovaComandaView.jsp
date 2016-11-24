@@ -41,12 +41,10 @@
         			<label class="label-control">Mesa N°</label>
         			<input class="form-control"name="num_mesa" type="text" readonly value="${num_mesa }" pattern="[0-9]+$" required>
       			</div>
-		
 				<div class="col-xs-3">
 					<label class="label-control">Comanda</label>
 					<input class="form-control"name="codigo_comanda" type="text" readonly value="${num_mesa }" pattern="[0-9]+$" required>
 				</div>
-		
 				<div class="col-xs-6">
 					<label class="label-control">Escolha o Garçom </label>
 					<select name="garcom" class="form-control">
@@ -58,16 +56,14 @@
 							<%}%>
 					</select>
 				</div>
-				
 				<div class="col-xs-6">
 					<hr> 
-					<button class="btn btn-success btn-block" onClick="window.close()" name="operacao" value="cadastrar">Abrir comanda</button>
+					<button class="btn btn-success btn-block" name="operacao" value="cadastrar">Cadastrar comanda</button>
 				</div>
 				<div class="col-xs-6">
-					<hr>
+					<hr> 
 					<button class="btn btn-danger btn-block" onClick="window.close()">Fechar</button>
 				</div>
-				
 			</div>
 		</form>
 	</div>
