@@ -44,8 +44,9 @@ public class NovoPedidoController extends HttpServlet {
 			String codbusca = valor(req, "pesquisa", "0");
 			int cod_comanda = toInt(req, "cod_comanda", "0");
 			int codigo_produto = toInt(req, "codigo_produto", "0");
+			int qntPedido = toInt(req, "qntPedido", "1");
 			if (op.equals("adicionar")) {
-				NovoPedidoDao.adicionar(cod_comanda, codigo_produto);
+				NovoPedidoDao.adicionar(cod_comanda, codigo_produto, qntPedido);
 			} else if (op.equals("")) {
 				msg = "";
 			} else {

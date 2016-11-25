@@ -69,7 +69,7 @@
                  	<%} %>
 				</tbody>
 			</table>
-			<button onclick="modal_novo_pedido(<%=request.getAttribute("comanda_mesa")%>)">Novo Pedido</button>
+			<button href="garcom_comanda?num_mesa=<%=request.getAttribute("comanda_mesa") %>" onclick="modal_novo_pedido(<%=request.getAttribute("comanda_mesa")%>)">Novo Pedido</button>
 			<a href="garcom_comanda?operacao=fechar&num_mesa=<%=request.getAttribute("comanda_mesa")%>">Fechar Comanda</a>
 		</div>
 	</form>

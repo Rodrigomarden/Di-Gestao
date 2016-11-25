@@ -15,7 +15,7 @@ function modal_nova_comanda(mesaAux) {
 }
 
 function modal_novo_pedido(mesaAux) {
-	window.open('novo_pedido?num_mesa=' + mesaAux, "Novo_Pedido","width=500, height=200, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
+	window.open('novo_pedido?num_mesa=' + mesaAux, "Novo_Pedido","width=500, height=500, top=100, left=700, scrollbars=no, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no");
 }
 
 function modal_alterarProduto(codigo, produto, valor, qnt_pessoas, contem) {

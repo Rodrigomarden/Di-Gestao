@@ -12,14 +12,15 @@ public class NovoPedidoDao {
 	
 	private static final String URL = "jdbc:derby:bd;create=true";
 
-	public static void adicionar(int cod_comanda, int codigo_produto) throws SQLException {
+	public static void adicionar(int cod_comanda, int codigo_produto, int qntPedido) throws SQLException {
 		// Abrir uma conexão com o banco de dados.
 		Connection conn = DriverManager.getConnection(URL);
 		// Executar instrução SQL.
-		String sql = "insert into registra_pedido values (?, current_date, ?, 1, current_time, 'Aguardando')";
+		String sql = "insert into registra_pedido values (?, current_date, ?, ?, current_time, 'Aguardando')";
 		PreparedStatement pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		pstmt.setInt(1, cod_comanda);
 		pstmt.setInt(2, codigo_produto);
+		pstmt.setInt(3, qntPedido);
 		pstmt.executeUpdate();
 		// Fechar sentença.
 		pstmt.close();
